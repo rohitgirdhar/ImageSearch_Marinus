@@ -1,0 +1,6 @@
+[submodule "lib/ScalableLSH"]
+	path = lib/ScalableLSH
+	url = https://github.com/rohitgirdhar-cmu-experimental/ScalableLSH.git
+[submodule "lib/ComputeFeatures"]
+	path = lib/ComputeFeatures
+	url = https://github.com/rohitgirdhar/ComputeFeatures.git
