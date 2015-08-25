@@ -26,8 +26,10 @@ Update Procedure
 The service runs out of a tmux environment. Use `tmux att -t marinus/imgsearch/full` to connect.
 The scripts for updating the index are all in `/mnt/data/ImageSearch/Code/ImageSearch_Marinus/scripts/001_full_search`.
 
-1. Extracting features
+1. Extracting features:
   Use `bash computeFeatures.sh <lno>` to extract features for new images. Look inside the script for the various optios: It expects the paths to the new images in `/mnt/data/ImageSearch/Data/Images/lists/Images_ext.txt` file (it's specified with a `-n` flag in the call to the update program.
   <lno> is the line number of the first new image in this file that needs to processed.
-2. Building index
-  Use `bash buildIndex.sh` to update the index. See inside the script for options. It loads the previous index from location specified at (`-l`) and saves a new index to location specified by (`-s`). It remembers the line number of the last image indexed, so will only index if it sees more lines in the `Images.txt` file. 
+2. Building index:
+  Use `bash buildIndex.sh` to update the index. See inside the script for options. It loads the previous index from location specified at (`-l`) and saves a new index to location specified by (`-s`). It remembers the line number of the last image indexed, so will only index if it sees more lines in the `Images.txt` file. Note: If the amount of memory is not enough to keep 2 copies of index (one for the search service and one to update), one of them will get killed. So it's better to kill the search service when updating the index.
+3. Restart service:
+  Use the `run_memex_server_ITQ_compressedFeatStor.sh`. Update the path to the new index
