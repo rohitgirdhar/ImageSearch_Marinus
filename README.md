@@ -19,3 +19,15 @@ Dependencies
 3. Compile Caffe in `lib/ComputeFeatures/Features/CNN/external/caffe`
 4. Install zlib, zmq, lmdb, and set up paths in the Makefiles (for `lib/ComputeFeatures/caffe/Makefile.config`, `lib/ScalableLSH/Deploy/Makefile`) etc
 5. LMDB works with version 0.9.15. Remove previous system version and install through the git repo
+
+Update Procedure
+----------------
+
+The service runs out of a tmux environment. Use `tmux att -t marinus/imgsearch/full` to connect.
+The scripts for updating the index are all in `/mnt/data/ImageSearch/Code/ImageSearch_Marinus/scripts/001_full_search`.
+
+1. Extracting features
+  Use `bash computeFeatures.sh <lno>` to extract features for new images. Look inside the script for the various optios: It expects the paths to the new images in `/mnt/data/ImageSearch/Data/Images/lists/Images_ext.txt` file (it's specified with a `-n` flag in the call to the update program.
+  <lno> is the line number of the first new image in this file that needs to processed.
+2. Building index
+  Use `bash buildIndex.sh` to update the index. See inside the script for options. It loads the previous index from location specified at (`-l`) and saves a new index to location specified by (`-s`). It remembers the line number of the last image indexed, so will only index if it sees more lines in the `Images.txt` file. 
